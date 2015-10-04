@@ -91,9 +91,12 @@ export default function ({ Plugin, types: t }) {
   /**
    * Infers a displayName from either a class node, or a createClass() call node.
    */
-  function findDisplayName(node, parent) {
+  function findDisplayName(node, parent, scope) {
     if (node.id) {
       return node.id.name;
+    }
+    if (t.isArrowFunctionExpression(node) && t.isExportDefaultDeclaration(parent)) {
+      return scope.hub.file.opts.basename;
     }
     if (t.isArrowFunctionExpression(node) && t.isVariableDeclarator(parent)) {
       return parent.id.name;
@@ -163,7 +166,7 @@ export default function ({ Plugin, types: t }) {
    * Such records will later be merged into a single object.
    */
   function createComponentRecord(node, parent, scope, file, state) {
-    const displayName = findDisplayName(node, parent) || undefined;
+    const displayName = findDisplayName(node, parent, scope) || undefined;
     const uniqueId = scope.generateUidIdentifier(
       '$' + (displayName || 'Unknown')
     ).name;
@@ -314,7 +317,7 @@ export default function ({ Plugin, types: t }) {
           const uniqueId = addComponentRecord(node, parent, scope, file, this.state);
           const bindingId = node.id;
 
-          if (t.isArrowFunctionExpression(node) && t.isVariableDeclarator(parent)) {
+          if (t.isArrowFunctionExpression(node)) {
             return t.callExpression(
               t.callExpression(wrapReactComponentId, [t.literal(uniqueId)]),
               [node]
