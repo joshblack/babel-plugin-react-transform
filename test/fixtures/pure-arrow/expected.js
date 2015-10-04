@@ -20,10 +20,6 @@ var _components = {
   _$B: {
     displayName: 'B',
     isFunction: true
-  },
-  _$C: {
-    displayName: 'C',
-    isFunction: true
   }
 };
 
@@ -49,14 +45,9 @@ function _wrapComponent(uniqueId) {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-function A() {
-  return _react2['default'].createElement('div', null);
-}
-
-A = _wrapComponent('_$A')(A)
-var B = _wrapComponent('_$B')(function () {
+var A = _wrapComponent('_$A')(function () {
   return _react2['default'].createElement('div', null);
 });
-var C = _wrapComponent('_$C')(function () {
+var B = _wrapComponent('_$B')(function () {
   return _react2['default'].createElement('div', null);
 });
