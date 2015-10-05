@@ -25,6 +25,10 @@ var _components = {
     displayName: 'B',
     isFunction: true
   },
+  _$C: {
+    displayName: 'C',
+    isFunction: true
+  },
   _$actual: {
     displayName: 'actual',
     isFunction: true
@@ -59,8 +63,11 @@ var A = _wrapComponent('_$A')(function () {
 var B = _wrapComponent('_$B')(function () {
   return _react2['default'].createElement('div', null);
 });
+var C = _wrapComponent('_$C')(function () {
+  return _react2['default'].createElement('div', null);
+});
 
+exports.C = C;
 exports['default'] = _wrapComponent('_$actual')(function () {
   return _react2['default'].createElement('div', null);
 });
-module.exports = exports['default'];
