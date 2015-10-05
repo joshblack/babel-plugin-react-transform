@@ -96,6 +96,8 @@ export default function ({ Plugin, types: t }) {
       return node.id.name;
     }
     if (t.isArrowFunctionExpression(node) && t.isExportDefaultDeclaration(parent)) {
+      // Need to understand how reliable this path for retrieving filename.
+      // Also, this should also hit for anonymous Function expressions.
       return scope.hub.file.opts.basename;
     }
     if (t.isArrowFunctionExpression(node) && t.isVariableDeclarator(parent)) {

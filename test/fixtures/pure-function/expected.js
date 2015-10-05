@@ -10,11 +10,19 @@ var _myOtherCustomModuleWrap2 = require('my-other-custom-module/wrap');
 
 var _myOtherCustomModuleWrap3 = _interopRequireDefault(_myOtherCustomModuleWrap2);
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
 var _react2 = _interopRequireDefault(_react);
 
 var _components = {
   _$A: {
     displayName: 'A',
+    isFunction: true
+  },
+  _$B: {
+    displayName: 'B',
     isFunction: true
   }
 };
@@ -44,4 +52,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
 function A() {
   return _react2['default'].createElement('div', null);
 }
-A = _wrapComponent('_$A')(A)
+
+exports.A = A = _wrapComponent('_$A')(A)
+function B() {
+  return _react2['default'].createElement('div', null);
+}
+
+B = _wrapComponent('_$B')(B)
+exports.A = A;
+exports['default'] = B;
